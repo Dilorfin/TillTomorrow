@@ -1,0 +1,4 @@
+version: 1
+
+post-build: | 
+    cp dist/till-tomorrow/uk/* dist/till-tomorrow && rm -rf dist/till-tomorrow/uk
