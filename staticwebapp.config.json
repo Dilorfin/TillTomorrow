@@ -1,0 +1,17 @@
+{
+	"routes": [
+		{ "route": "*.{js,json,css,jpg,png,ico}" },
+		{
+			"route": "/en/*",
+			"rewrite": "/en/index.html"
+		},
+		{
+			"route": "/ru/*",
+			"rewrite": "/ru/index.html"
+		},
+		{
+			"route": "/*",
+			"rewrite": "/index.html"
+		}
+	]
+}
