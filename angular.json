@@ -77,7 +77,8 @@
 							"vendorChunk": true,
 							"extractLicenses": false,
 							"sourceMap": true,
-							"namedChunks": true
+							"namedChunks": true,
+							"localize": false
 						}
 					},
 					"defaultConfiguration": "production"
@@ -97,7 +98,9 @@
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
-						"browserTarget": "till-tomorrow:build"
+						"browserTarget": "till-tomorrow:build",
+						"outputPath": "src/locale",
+						"format": "json"
 					}
 				},
 				"test": {
