@@ -21,3 +21,16 @@ grunt.initConfig({
 		all: allConfig,
 	}
 });
+
+grunt.registerTask('move-uk', () =>
+{
+	glob.sync('./dist/till-tomorrow/uk/*').forEach(srcPath =>
+	{
+		let fileName = srcPath.substring(srcPath.lastIndexOf('/') + 1);
+		let destPath = './dist/till-tomorrow/' + fileName;
+		grunt.file.copy(srcPath, destPath);
+	});
+	grunt.file.delete('./dist/till-tomorrow/uk/');
+});
+
+grunt.registerTask('default', ['purgecss', 'move-uk']);
