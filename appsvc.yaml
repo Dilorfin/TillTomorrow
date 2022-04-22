@@ -2,4 +2,5 @@ version: 1
 
 # https://github.com/microsoft/Oryx
 post-build: | 
+    npx grunt purifycss
     cp dist/till-tomorrow/uk/* dist/till-tomorrow && rm -rf dist/till-tomorrow/uk

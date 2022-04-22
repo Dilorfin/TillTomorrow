@@ -1,6 +1,6 @@
 {
 	"routes": [
-		{ "route": "*.{js,json,css,jpg,png,ico}" },
+		{ "route": "*.{js,json,css,jpg,png,ico,woff,woff2}" },
 		{
 			"route": "/en/*",
 			"rewrite": "/en/index.html"
