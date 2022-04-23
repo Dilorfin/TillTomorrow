@@ -5,6 +5,18 @@
 			"statusCode": 404
 		},
 		{
+			"route": "/.auth/login/google",
+			"statusCode": 404
+		},
+		{
+			"route": "/.auth/login/github",
+			"statusCode": 404
+		},
+		{
+			"route": "/.auth/login/facebook",
+			"statusCode": 404
+		},
+		{
 			"route": "*.{js,json,css,jpg,png,ico,woff,woff2}"
 		},
 		{
