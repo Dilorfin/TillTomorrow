@@ -1,1 +1,31 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+	<div class="container-xl">
+		<a class="navbar-brand" href="tel:+380500000000">
+			<i class="bi bi-telephone" aria-hidden="true"></i>
+			+380 50 000 00 00
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#phonesNavbar"
+			aria-controls="phonesNavbar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="phonesNavbar">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" i18n-href="email"
+						href="mailto:abc@example.com?subject=Mail from our Website&body=Dear TillTommorow Team">
+						<i class="bi bi-envelope" aria-hidden="true"></i>
+					</a>
+				</li>
+				<li class="navbar-text">abc@example.com</li>
+			</ul>
+
+			<a *ngIf="locale != 'uk'" class="btn btn-light" href="/">UKR</a>
+			<a *ngIf="locale != 'en'" class="btn btn-light" href="/en/">ENG</a>
+			<a *ngIf="locale != 'ru'" class="btn btn-light" href="/ru/">RUS</a>
+		</div>
+	</div>
+</nav>
+
+<div class="container-xl navbar-margin">
+	<router-outlet></router-outlet>
+</div>
