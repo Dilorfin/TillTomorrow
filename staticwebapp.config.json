@@ -1,6 +1,24 @@
 {
 	"routes": [
-		{ "route": "*.{js,json,css,jpg,png,ico,woff,woff2}" },
+		{
+			"route": "/.auth/login/twitter",
+			"statusCode": 404
+		},
+		{
+			"route": "/.auth/login/google",
+			"statusCode": 404
+		},
+		{
+			"route": "/.auth/login/github",
+			"statusCode": 404
+		},
+		{
+			"route": "/.auth/login/facebook",
+			"statusCode": 404
+		},
+		{
+			"route": "*.{js,json,css,jpg,png,ico,woff,woff2}"
+		},
 		{
 			"route": "/en/*",
 			"rewrite": "/en/index.html"
@@ -13,5 +31,17 @@
 			"route": "/*",
 			"rewrite": "/index.html"
 		}
-	]
+	],
+	"responseOverrides": {
+		"401": {
+			"redirect": "/.auth/login/aad?post_login_redirect_uri=.referrer",
+			"statusCode": 302
+		},
+		"403": {
+			"rewrite": "/index.html"
+		},
+		"404": {
+			"rewrite": "/index.html"
+		}
+	}
 }
