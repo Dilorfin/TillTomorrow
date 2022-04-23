@@ -10,16 +10,18 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="navbar-text">
-					<i class="bi bi-telegram"></i>
-				</li>
 				<li class="nav-item">
 					<a class="nav-link" i18n-href="email"
 						href="mailto:abc@example.com?subject=Mail from our Website&body=Dear TillTommorow Team">
 						<i class="bi bi-envelope"></i>
 					</a>
 				</li>
+				<li class="navbar-text">abc@example.com</li>
 			</ul>
+
+			<a *ngIf="locale != 'uk'" class="btn btn-light" href="/">UKR</a>
+			<a *ngIf="locale != 'en'" class="btn btn-light" href="/en/">ENG</a>
+			<a *ngIf="locale != 'ru'" class="btn btn-light" href="/ru/">RUS</a>
 		</div>
 	</div>
 </nav>
