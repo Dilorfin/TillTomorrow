@@ -13,15 +13,26 @@
 				<li class="nav-item">
 					<a class="nav-link" i18n-href="email"
 						href="mailto:abc@example.com?subject=Mail from our Website&body=Dear TillTommorow Team">
-						<i class="bi bi-envelope" aria-hidden="true"></i>
+						<i class="bi bi-envelope" aria-hidden="true"></i> abc@example.com
 					</a>
 				</li>
-				<li class="navbar-text">abc@example.com</li>
+				<span class="d-lg-none">
+					<li class="nav-item">
+						<a href="#" class="nav-link" i18n="@@technics-title">Technics</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link" i18n="@@stories-title">Cool-stories</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link" i18n="@@relatives-info-title">For relatives</a>
+					</li>
+				</span>
 			</ul>
-
-			<a *ngIf="locale != 'uk'" class="btn btn-light" href="/">UKR</a>
-			<a *ngIf="locale != 'en'" class="btn btn-light" href="/en/">ENG</a>
-			<a *ngIf="locale != 'ru'" class="btn btn-light" href="/ru/">RUS</a>
+			<span class="btn-group">
+				<a *ngIf="locale != 'uk'" class="btn btn-light" href="/">UKR</a>
+				<a *ngIf="locale != 'en'" class="btn btn-light" href="/en/">ENG</a>
+				<a *ngIf="locale != 'ru'" class="btn btn-light" href="/ru/">RUS</a>
+			</span>
 		</div>
 	</div>
 </nav>
