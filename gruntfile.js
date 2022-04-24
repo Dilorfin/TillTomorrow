@@ -22,6 +22,7 @@ grunt.initConfig({
 	}
 });
 
+// workaround till (https://github.com/angular/angular-cli/issues/16997)
 grunt.registerTask('move-uk', () =>
 {
 	glob.sync('./dist/till-tomorrow/uk/*').forEach(srcPath =>
