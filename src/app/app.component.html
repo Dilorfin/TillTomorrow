@@ -10,21 +10,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="phonesNavbar">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item">
-					<a class="nav-link" i18n-href="email"
-						href="mailto:abc@example.com?subject=Mail from our Website&body=Dear TillTommorow Team">
-						<i class="bi bi-envelope" aria-hidden="true"></i> abc@example.com
-					</a>
+				<li class="navbar-text">
+					<i class="bi bi-envelope" aria-hidden="true"></i> abc@example.com
 				</li>
 				<span class="d-lg-none">
-					<li class="nav-item">
-						<a href="#" class="nav-link" i18n="@@technics-title">Technics</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link" i18n="@@stories-title">Cool-stories</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link" i18n="@@relatives-info-title">For relatives</a>
+					<li *ngFor="let item of navigationItems" class="nav-item">
+						<a class="nav-link" [routerLink]="item.route">{{item.title}}</a>
 					</li>
 				</span>
 			</ul>
@@ -38,5 +29,18 @@
 </nav>
 
 <div class="container-xl navbar-margin">
-	<router-outlet></router-outlet>
+	<div class="row">
+		<div class="col-2 d-none d-lg-block">
+			<div class="list-group">
+				<a *ngFor="let item of navigationItems;first as isFirst" class="list-group-item list-group-item-action"
+					[class.h5]="isFirst"
+					[routerLink]="item.route">
+					{{ item.title }}
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-8 p-3">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
 </div>
