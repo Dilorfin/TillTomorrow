@@ -15,7 +15,7 @@
       "patterns": [
         "src"
       ],
-      "extensions": "ts,html,less"
+      "extensions": "ts,html,less,scss"
     }
   },
   "private": true,
