@@ -16,15 +16,15 @@ export class AppComponent
 			title: $localize `:@@app-title:Till Tomorrow`
 		},
 		{
-			route: "",
+			route: "articles",
 			title: $localize `:@@technics-title:Technics`
 		},
 		{
-			route: "",
+			route: "stories",
 			title: $localize `:@@stories-title:Cool-stories`
 		},
 		{
-			route: "",
+			route: "for-relatives",
 			title: $localize `:@@for-relatives-title:For relatives`
 		},
 		{
