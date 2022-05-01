@@ -15,6 +15,7 @@ const routes: Routes = [
 	{ path: 'about-us', component: AboutUsPageComponent },
 	{ path: 'stories', component: StoriesPageComponent },
 	{ path: 'for-relatives', component: ForRelativesPageComponent },
+	{ path: 'admin', loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule) },
 	{ path: '**', component: PageNotFoundComponent }
 ];
 

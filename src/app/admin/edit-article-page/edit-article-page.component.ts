@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-edit-article-page',
-  templateUrl: './edit-article-page.component.html',
-  styleUrls: ['./edit-article-page.component.scss']
+	selector: 'app-edit-article-page',
+	templateUrl: './edit-article-page.component.html',
+	styleUrls: ['./edit-article-page.component.scss']
 })
-export class EditArticlePageComponent implements OnInit {
+export class EditArticlePageComponent implements OnInit
+{
+	constructor() { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void
+	{}
 }
