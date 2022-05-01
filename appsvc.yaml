@@ -2,4 +2,4 @@ version: 1
 
 # https://github.com/microsoft/Oryx
 post-build: | 
-    npx grunt move-uk
+    npx grunt
