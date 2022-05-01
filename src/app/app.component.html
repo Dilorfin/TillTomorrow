@@ -41,7 +41,8 @@
 		<div class="col-2 d-none d-lg-block">
 			<div class="list-group">
 				<a *ngFor="let item of navigationItems;first as isFirst"
-					class="m-0 list-group-item list-group-item-action" [class.h5]="isFirst" [routerLink]="item.route">
+					class="m-0 list-group-item list-group-item-action" [class.h5]="isFirst" 
+					[routerLink]="item.route" routerLinkActive="disabled" [routerLinkActiveOptions]="{exact: true}">
 					{{ item.title }}
 				</a>
 			</div>
