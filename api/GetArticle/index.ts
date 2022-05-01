@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { ArticleModel } from 'models/article.model';
+import { ArticleModel } from '../models/article.model';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void>
 {
