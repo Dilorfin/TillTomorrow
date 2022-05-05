@@ -1,24 +1,12 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 
-async function getUserInfo()
-{
-	const response = await fetch('/.auth/me');
-	const payload = await response.json();
-	const { clientPrincipal } = payload;
-	return clientPrincipal;
-}
+import { getAzureUserFromRequest, AzureUserData } from "../common/utils"
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void>
 {
-	const user = getUserInfo();
+	const user : AzureUserData = getAzureUserFromRequest(req);
 
-	context.log('HTTP trigger function processed a request.');
-	context.log(user);
-	context.res = {
-		// status: 200, /* Defaults to 200 */
-		body: user
-	};
-	
+	context.res.json(user);
 };
 
 export default httpTrigger;
