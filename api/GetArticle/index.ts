@@ -1,28 +1,38 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { ArticleModel } from '../models/article.model';
+import { MongoClient } from "mongodb";
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void>
+const client = new MongoClient(process.env.CONNECTION_STRING);
+
+const httpTrigger: AzureFunction = async function (context: Context, request: HttpRequest): Promise<void>
 {
-	context.log('HTTP trigger function processed a request.');
-	const id: string = (req.query['id'] || (req.body && req.body['id']));
-	const langId: string = (req.query['language'] || (req.body && req.body['language']));
-	if (id)
-	{
-		const article: ArticleModel = {
-			id: 'hamlet',
-			title: 'Гамлет',
-			language: 'uk',
-			text: `<p>some text</p>`
-		};
-
-		context.res = {
-			// status: 200, /* Defaults to 200 */
-			body: article
-		};
-	}
-	else
+	const id: string = (request.query['id'] || (request.body && request.body['id']));
+	const langId: string = (request.query['language'] || (request.body && request.body['language']));
+	if (!id || !langId)
 	{
 		context.res = { status: 404 };
+		return;
+	}
+
+	try
+	{
+		await client.connect();
+		const database = client.db('till-tomorrow');
+		const articles = database.collection<ArticleModel>('articles');
+		const result = articles.findOne({ id: id, language: langId });
+		
+		if (result)
+		{
+			context.res.json(result);
+		}
+		else
+		{
+			context.res = { status: 404 };
+		}
+	}
+	finally
+	{
+		await client.close();
 	}
 };
 
