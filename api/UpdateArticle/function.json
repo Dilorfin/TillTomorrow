@@ -16,5 +16,5 @@
 			"name": "res"
 		}
 	],
-	"scriptFile": "../dist/AddUpdateArticle/index.js"
+	"scriptFile": "../dist/UpdateArticle/index.js"
 }
