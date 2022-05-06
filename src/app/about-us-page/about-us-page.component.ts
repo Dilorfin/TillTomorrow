@@ -27,19 +27,19 @@ export class AboutUsPageComponent
 			},
 			{
 				name: 'Kitten',
-				image: 'http://placekitten.com/640/640',
+				image: '../../assets/700.jpg',
 				about: 'Newborn kittens are completely helpless and totally dependent on their mothers for nourishment, warmth and elimination.',
 				phone: null
 			},
 			{
 				name: 'Kitten',
-				image: 'http://placekitten.com/500/500',
+				image: '../../assets/500.jpg',
 				about: 'Even newborn kittens can purr and can often be heard doing so while they’re nursing or their mothers are cleaning them. While their squeaks and squeals are much more obvious, if you listen closely you’ll hear their content little motors running.',
 				phone: null
 			},
 			{
 				name: 'Kitten',
-				image: 'http://placekitten.com/700/700',
+				image: '../../assets/640.jpg',
 				about: 'Kittens will chew off their sibling\'s whiskers to show dominance',
 				phone: null
 			}
