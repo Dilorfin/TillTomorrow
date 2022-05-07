@@ -1,3 +1,35 @@
 <div>
-	<h5><em i18n="@@about-us-title">About us</em></h5>
+	<h3><em i18n="@@about-us-title">About us</em></h3>
+	<figure class="text-end">
+		<blockquote class="blockquote">
+			<ul class="list-unstyled">
+				<li>We are, we are, we are made from broken parts</li>
+				<li>We are, we are, we are broken from the start</li>
+				<li>And our hearts, our hearts, they were beating in the dark</li>
+				<li>'Cause we are, we are, we are built from broken parts</li>
+			</ul>
+		</blockquote>
+		<figcaption class="blockquote-footer">
+			Hollywood Undead <cite title="Song Title">We Are</cite>
+		</figcaption>
+	</figure>
+	<div class="container">
+		<div class="row gx-5 gy-5">
+			<div *ngFor="let card of cardsList" class="col-md-4">
+				<div class="card">
+					<img [src]="card.image" class="card-img-top" [alt]="card.name">
+					<div class="card-body">
+						<h5 class="card-title">{{card.name}}</h5>
+						<p *ngIf="card.about" class="card-text">
+							{{card.about}}
+						</p>
+						<p *ngIf="card.phone" class="card-text">
+							Personal phone:
+							<a [href]="'tel:'+card.phone">{{card.phone}}</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
