@@ -7,7 +7,7 @@ const client = new MongoClient(process.env.CONNECTION_STRING);
 
 const httpTrigger: AzureFunction = async function (context: Context, request: HttpRequest): Promise<void>
 {
-	if (!request.body)
+	/*if (!request.body)
 	{
 		const errorMessage: string = "Request body is empty";
 		context.res = {
@@ -40,7 +40,7 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 	finally
 	{
 		await client.close();
-	}
+	}*/
 };
 
 export default httpTrigger;

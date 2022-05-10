@@ -1,7 +1,8 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { ArticleDbModel } from '../models/db/article.model';
 import { ArticleModel } from '../models/api/article.model';
-import { MongoClient, WithId } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
+import { mapper } from "../models/mapper";
 
 const client = new MongoClient(process.env.CONNECTION_STRING);
 
@@ -20,11 +21,12 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 		await client.connect();
 		const database = client.db('till-tomorrow');
 		const articles = database.collection<ArticleDbModel>('articles');
-		const result = articles.findOne({ id: id, language: langId });
-		
-		if (result)
+		const dbArticle: ArticleDbModel = await articles.findOne({ _id: new ObjectId(id) });
+
+		if (dbArticle)
 		{
-			context.res.json(result);
+			const apiModel: ArticleModel = mapper.map(dbArticle, ArticleDbModel, ArticleModel);
+			context.res.json(apiModel);
 		}
 		else
 		{
