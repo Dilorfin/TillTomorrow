@@ -1,6 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { MongoClient } from "mongodb";
-import { ArticleModel } from "../models/article.model";
+import { ArticleModel } from "../models/api/article.model";
+import { ArticleDbModel } from "../models/db/article.model";
 
 const client = new MongoClient(process.env.CONNECTION_STRING);
 
@@ -8,7 +9,7 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 {
 	if (!request.body)
 	{
-		const errorMessage:string = "Request body is empty";
+		const errorMessage: string = "Request body is empty";
 		context.res = {
 			status: 400,
 			body: errorMessage
@@ -21,8 +22,8 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 	{
 		await client.connect();
 		const database = client.db('till-tomorrow');
-		const articles = database.collection<ArticleModel>('articles');
-		
+		const articles = database.collection<ArticleDbModel>('articles');
+
 		const article = request.body as ArticleModel;
 		const result = await articles.insertOne(article);
 		context.log(`An article was inserted with the _id: ${result.insertedId}`);

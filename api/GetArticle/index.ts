@@ -1,6 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { ArticleModel } from '../models/article.model';
-import { MongoClient } from "mongodb";
+import { ArticleDbModel } from '../models/db/article.model';
+import { ArticleModel } from '../models/api/article.model';
+import { MongoClient, WithId } from "mongodb";
 
 const client = new MongoClient(process.env.CONNECTION_STRING);
 
@@ -18,7 +19,7 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 	{
 		await client.connect();
 		const database = client.db('till-tomorrow');
-		const articles = database.collection<ArticleModel>('articles');
+		const articles = database.collection<ArticleDbModel>('articles');
 		const result = articles.findOne({ id: id, language: langId });
 		
 		if (result)

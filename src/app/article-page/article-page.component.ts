@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ArticleModel } from 'api/models/article.model';
+import { ArticleModel } from 'api/models/api/article.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
