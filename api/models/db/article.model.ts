@@ -13,7 +13,7 @@ export class ArticleDbModel
 	@AutoMap()
 	htmlText: string;
 
-	/*@AutoMap()
+	@AutoMap()
 	modifiedDate: number;
 	@AutoMap()
 	creationDate: number;
@@ -21,5 +21,5 @@ export class ArticleDbModel
 	@AutoMap()
 	creatorId: ObjectId;
 	@AutoMap()
-	modifierId: ObjectId;*/
+	modifierId: ObjectId;
 };
