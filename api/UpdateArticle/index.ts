@@ -46,6 +46,10 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 	{
 		updateModel["language"] = inputArticle.language;
 	}
+	if (inputArticle.listed)
+	{
+		updateModel["listed"] = inputArticle.listed;
+	}
 
 	try
 	{

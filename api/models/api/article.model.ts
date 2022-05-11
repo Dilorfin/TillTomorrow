@@ -21,4 +21,7 @@ export class ArticleModel
 	creatorId: string;
 	@AutoMap()
 	modifierId: string;
+
+	@AutoMap()
+	listed: boolean;
 };
