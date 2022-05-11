@@ -13,28 +13,12 @@ export const mapper = createMapper({
 createMap(mapper, ArticleDbModel, ArticleModel,
 	forMember(
 		(destination) => destination.id,
-		mapFrom((source) => source._id.toString())
-	),
-	forMember(
-		(destination) => destination.creatorId,
-		mapFrom((source) => source.creatorId.toString())
-	),
-	forMember(
-		(destination) => destination.modifierId,
-		mapFrom((source) => source.modifierId.toString())
+		mapFrom((source) => source._id?.toString())
 	)
 );
 createMap(mapper, ArticleModel, ArticleDbModel,
 	forMember(
 		(destination) => destination._id,
 		mapFrom((source) => new ObjectId(source.id))
-	),
-	forMember(
-		(destination) => destination.creatorId,
-		mapFrom((source) => new ObjectId(source.creatorId))
-	),
-	forMember(
-		(destination) => destination.modifierId,
-		mapFrom((source) => new ObjectId(source.modifierId))
 	)
 );

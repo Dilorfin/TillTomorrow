@@ -19,7 +19,7 @@ export class ArticleDbModel
 	creationDate: number;
 
 	@AutoMap()
-	creatorId: ObjectId;
+	creatorId: string;
 	@AutoMap()
-	modifierId: ObjectId;
+	modifierId: string;
 };
