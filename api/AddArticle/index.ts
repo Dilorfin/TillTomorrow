@@ -1,20 +1,17 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { MongoClient } from "mongodb";
+import { InsertOneResult, MongoClient } from "mongodb";
+import { setErrorResult } from "../common/utils";
 import { ArticleModel } from "../models/api/article.model";
 import { ArticleDbModel } from "../models/db/article.model";
+import { mapper } from "../models/mapper";
 
 const client = new MongoClient(process.env.CONNECTION_STRING);
 
 const httpTrigger: AzureFunction = async function (context: Context, request: HttpRequest): Promise<void>
 {
-	/*if (!request.body)
+	if (!request.body)
 	{
-		const errorMessage: string = "Request body is empty";
-		context.res = {
-			status: 400,
-			body: errorMessage
-		};
-		context.log(errorMessage);
+		setErrorResult(context, 400, "Request body is empty");
 		return;
 	}
 
@@ -24,23 +21,20 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 		const database = client.db('till-tomorrow');
 		const articles = database.collection<ArticleDbModel>('articles');
 
-		const article = request.body as ArticleModel;
-		const result = await articles.insertOne(article);
+		const inputArticle:ArticleModel = request.body;
+		const dbArticle:ArticleDbModel = mapper.map(inputArticle, ArticleModel, ArticleDbModel);
+
+		const result:InsertOneResult<ArticleDbModel> = await articles.insertOne(dbArticle);
 		context.log(`An article was inserted with the _id: ${result.insertedId}`);
 	}
 	catch (error)
 	{
-		const errorMessage: string = `Error occurred "${error}"`;
-		context.res = {
-			status: 500,
-			body: errorMessage
-		};
-		context.log(errorMessage);
+		setErrorResult(context, 500, `Error occurred "${error}"`);
 	}
 	finally
 	{
 		await client.close();
-	}*/
+	}
 };
 
 export default httpTrigger;

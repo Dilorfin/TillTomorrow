@@ -1,4 +1,4 @@
-import { HttpRequest } from "@azure/functions";
+import { Context, HttpRequest } from "@azure/functions";
 
 export interface AzureUserData
 {
@@ -14,4 +14,11 @@ export function getAzureUserFromRequest(req: HttpRequest) : AzureUserData
 	const encoded = Buffer.from(header, 'base64');
 	const decoded = encoded.toString('ascii');
 	return JSON.parse(decoded);
+}
+
+export function setErrorResult(context: Context, errorCode: number, errorMessage: string): void
+{
+	context.res.json({ error: errorMessage });
+	context.res.status = errorCode;
+	context.log(errorMessage);
 }
