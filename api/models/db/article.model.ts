@@ -14,12 +14,33 @@ export class ArticleDbModel
 	htmlText: string;
 
 	@AutoMap()
-	modifiedDate: number;
-	@AutoMap()
 	creationDate: number;
+	@AutoMap()
+	modifiedDate: number;
 
 	@AutoMap()
 	creatorId: string;
 	@AutoMap()
 	modifierId: string;
+
+	@AutoMap()
+	listed: boolean;
+};
+
+export class UpdateArticleDbModel
+{
+	@AutoMap()
+	title: string;
+	@AutoMap()
+	language: string;
+	@AutoMap()
+	htmlText: string;
+
+	@AutoMap()
+	modifiedDate: number;
+	@AutoMap()
+	modifierId: string;
+
+	@AutoMap()
+	listed: boolean;
 };

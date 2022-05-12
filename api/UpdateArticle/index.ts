@@ -2,7 +2,8 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import { AzureUserData, getAzureUserFromRequest, setErrorResult } from "../common/utils";
 import { ArticleModel } from "../models/api/article.model";
-import { ArticleDbModel } from "../models/db/article.model";
+import { ArticleDbModel, UpdateArticleDbModel } from "../models/db/article.model";
+import { mapper } from "../models/mapper";
 
 const client = new MongoClient(process.env.CONNECTION_STRING);
 
@@ -27,29 +28,10 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 	}
 
 	const user: AzureUserData = getAzureUserFromRequest(request);
-	const now: number = Date.now();
-
-	let updateModel = {
-		modifiedDate: now,
-		modifierId: user.userId
-	};
-
-	if (inputArticle.htmlText)
-	{
-		updateModel["htmlText"] = inputArticle.htmlText;
-	}
-	if (inputArticle.title)
-	{
-		updateModel["title"] = inputArticle.title;
-	}
-	if (inputArticle.language)
-	{
-		updateModel["language"] = inputArticle.language;
-	}
-	if (inputArticle.listed)
-	{
-		updateModel["listed"] = inputArticle.listed;
-	}
+	
+	let updateModel = mapper.map(inputArticle, ArticleModel, UpdateArticleDbModel);
+	updateModel.modifiedDate = Date.now();
+	updateModel.modifierId = user.userId;
 
 	try
 	{

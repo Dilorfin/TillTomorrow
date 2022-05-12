@@ -1,9 +1,9 @@
 import { createMap, createMapper, forMember, mapFrom } from '@automapper/core';
 import { classes } from '@automapper/classes';
+import { ObjectId } from 'mongodb';
 
 import { ArticleModel } from "./api/article.model";
-import { ArticleDbModel } from "./db/article.model";
-import { ObjectId } from 'mongodb';
+import { ArticleDbModel, UpdateArticleDbModel } from "./db/article.model";
 
 // Create and export the mapper
 export const mapper = createMapper({
@@ -22,3 +22,4 @@ createMap(mapper, ArticleModel, ArticleDbModel,
 		mapFrom((source) => new ObjectId(source.id))
 	)
 );
+createMap(mapper, ArticleModel, UpdateArticleDbModel);
