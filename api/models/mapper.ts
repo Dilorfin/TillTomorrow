@@ -7,7 +7,7 @@ import { ArticleDbModel, UpdateArticleDbModel } from "./db/article.model";
 
 // Create and export the mapper
 export const mapper = createMapper({
-    strategyInitializer: classes(),
+	strategyInitializer: classes(),
 });
 
 createMap(mapper, ArticleDbModel, ArticleModel,
