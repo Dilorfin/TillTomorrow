@@ -1,7 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 import { ArticleDbModel } from '../models/db/article.model';
 import { ArticleModel } from '../models/api/article.model';
-import { FindCursor, MongoClient, WithId } from "mongodb";
+import { MongoClient } from "mongodb";
 import { mapper } from "../models/mapper";
 import { setErrorResult } from "../common/utils";
 
@@ -14,10 +14,15 @@ const httpTrigger: AzureFunction = async function (context: Context, request: Ht
 		await client.connect();
 		const database = client.db('till-tomorrow');
 		const articlesCollection = database.collection<ArticleDbModel>('articles');
-		
-		const cursorDbArticle: FindCursor<WithId<ArticleDbModel>> = await articlesCollection.find();
-
-		const articles = await cursorDbArticle.toArray();
+		const query = articlesCollection.aggregate([{
+			$lookup: {
+				from: 'tags',
+				localField: 'tags',
+				foreignField: '_id',
+				as: 'tags'
+			}
+		}]);
+		const articles = await query.toArray();
 		const apiArray = mapper.mapArray(articles, ArticleDbModel, ArticleModel);
 		context.res.json(apiArray);
 	}

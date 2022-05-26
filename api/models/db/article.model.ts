@@ -1,5 +1,6 @@
 import { AutoMap } from "@automapper/classes";
 import { ObjectId } from "mongodb"
+import { TagDbModel } from "./tag.model";
 
 export class ArticleDbModel
 {
@@ -22,6 +23,9 @@ export class ArticleDbModel
 	creatorId: string;
 	@AutoMap()
 	modifierId: string;
+
+	@AutoMap(()=>TagDbModel)
+	tags: TagDbModel[];
 
 	@AutoMap()
 	listed: boolean;

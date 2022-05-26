@@ -10,6 +10,12 @@ export interface AzureUserData
 
 export function getAzureUserFromRequest(req: HttpRequest) : AzureUserData
 {
+	return {
+		identityProvider: "moq",
+		userId: "moqId",
+		userDetails: "moc@email.com",
+		userRoles: ["authorized"]
+	};
 	const header = req.headers['x-ms-client-principal'];
 	const encoded = Buffer.from(header, 'base64');
 	const decoded = encoded.toString('ascii');

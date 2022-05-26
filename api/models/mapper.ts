@@ -4,6 +4,8 @@ import { ObjectId } from 'mongodb';
 
 import { ArticleModel } from "./api/article.model";
 import { ArticleDbModel, UpdateArticleDbModel } from "./db/article.model";
+import { TagDbModel } from './db/tag.model';
+import { TagModel } from './api/tag.model';
 
 // Create and export the mapper
 export const mapper = createMapper({
@@ -23,3 +25,16 @@ createMap(mapper, ArticleModel, ArticleDbModel,
 	)
 );
 createMap(mapper, ArticleModel, UpdateArticleDbModel);
+
+createMap(mapper, TagDbModel, TagModel,
+	forMember(
+		(destination) => destination.id,
+		mapFrom((source) => source._id?.toString())
+	)
+);
+createMap(mapper, TagModel, TagDbModel,
+	forMember(
+		(destination) => destination._id,
+		mapFrom((source) => new ObjectId(source.id))
+	)
+);

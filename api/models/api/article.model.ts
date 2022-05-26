@@ -1,4 +1,5 @@
 import { AutoMap } from "@automapper/classes";
+import { TagModel } from "./tag.model";
 
 export class ArticleModel
 {
@@ -21,6 +22,9 @@ export class ArticleModel
 	creatorId: string;
 	@AutoMap()
 	modifierId: string;
+
+	@AutoMap(()=>TagModel)
+	tags: TagModel[];
 
 	@AutoMap()
 	listed: boolean;
