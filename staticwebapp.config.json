@@ -17,6 +17,9 @@
 			"statusCode": 404
 		},
 		{
+			"route": "/api/*"
+		},
+		{
 			"route": "*.{js,json,css,jpg,png,ico,woff,woff2}"
 		},
 		{

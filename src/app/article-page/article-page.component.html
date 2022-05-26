@@ -1,1 +1,4 @@
-<p>article-page works!</p>
+<div *ngIf="article">
+	<h4><em>{{article.title}}</em></h4>
+	<div [innerHtml]="article.htmlText"></div>
+</div>
